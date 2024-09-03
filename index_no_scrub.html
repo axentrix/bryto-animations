@@ -85,10 +85,10 @@ ul li{
 }
 
 .roads-animation0, .roads-animation1, .roads-animation2, .roads-animation3{
-  max-height:90vh;
-  width:auto;
-  display:flex;
-  position:relative;
+ 
+
+  display:block;
+
 }
 
 .animation{
@@ -126,13 +126,13 @@ section{
 .roads-animation0, .roads-animation2, .roads-animation1{
     position:sticky;
     display:flex;
-  top:10vh;
-    height:90vh;
+  top:60px;
+    
 }
 
 .column{
     display:flex;
-   
+   max-width:400px;
    flex-direction:column;
    justify-content:center;
     
@@ -170,7 +170,7 @@ section{
         
         </div>
         <div class="roads-animation0">
-            <div id="container-zero" class="container animation" data-json="data_house.json" data-duration="10"></div>
+            <div id="container-zero" class="container animation" data-json="data_house.json" data-duration="9"></div>
          
         </div>
 </section>
@@ -180,7 +180,7 @@ section{
 <section id="section-one">
   
   <div class="roads-animation1">
-    <div id="container"  class="container animation" data-json="data_roads.json" data-duration="8"></div>
+    <div id="container"  class="container animation" data-json="data_roads.json" data-duration="6"></div>
  
 </div>
 
@@ -281,14 +281,16 @@ animation.forEach((anim, i) => {
   LottieScrollTrigger({
     target: anim,
     path: anim.dataset.json,
-    start: "top center",
-    end: "+=600%",
+    start: "top top",
+    speed:"slow",
+    //end: "+=750%",
     pin: false,
     scrub: false,
     //markers: true,
     id: 'multiple' + i,
-    toggleActions: "restart reverse restart reset",
+    toggleActions: "play complete pause restart",
     loop: false,
+    onComplete: () => animation.goToAndPlay(80),
     duration: anim.dataset.duration // might be worth getting from a data attr too?
   });
 });
@@ -304,7 +306,7 @@ playOnce.forEach((anim, i) => {
     scrub: false,
     markers: true,
     once: false,
-    loop: true,
+    loop: false,
     id: 'once' + i,
     duration: 2 // might be worth getting from a data attr too?
   });
@@ -314,7 +316,7 @@ function LottieScrollTrigger(vars) {
 
   let playhead = { frame: 0 },
     target = gsap.utils.toArray(vars.target)[0],
-    speeds = { slow: "+=2000", medium: "+=1000", fast: "+=500" },
+    speeds = { slow: "+=6000", medium: "+=1000", fast: "+=500" },
     duration = vars.duration || 0.5,
     st = {
       trigger: target,
