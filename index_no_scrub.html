@@ -137,10 +137,50 @@ section{
    justify-content:center;
     
 }
+.video-container{
+  border-radius:24px;
+  max-width:640px;
+  overflow:hidden;
+  box-shadow:10px 10px 10px rgba(28, 83, 165, 0.44);
+}
+
+video{
+  width:101%;
+  height:auto;
+}
+
+.top-section{
+  align-items:center;
+}
+h1{
+  color:#1F2439;
+  
+  font-size:50px;
+font-weight:700;
+line-height:1;}
+.gradient-text{
+  background:-webkit-linear-gradient(66deg, rgba(0,144,249,1) 0%, rgba(1,117,156,1) 55%, rgba(136,231,255,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+
+}
       </style>
 
 </head>
 <body class="loading">
+  <section class="top-section">
+<div class="column">
+    <h1>#1 On demand <span class="gradient-text">Google Street  View</span> Publishing </h1></div>
+    <div class="container video-container">
+    
+      <video autoplay loop>
+        <source src="images/mainmain_2.mp4" type="video/mp4">
+      
+        
+      </video>
+    </div>
+  </section>
 
 <section id="section-zero">
    
@@ -282,13 +322,13 @@ animation.forEach((anim, i) => {
     target: anim,
     path: anim.dataset.json,
     start: "top top",
-    speed:"slow",
-    //end: "+=750%",
+    speed:"medium",
+    end: "+=750%",
     pin: false,
     scrub: false,
     //markers: true,
     id: 'multiple' + i,
-    toggleActions: "play complete pause restart",
+    toggleActions: "restart pause restart pause",
     loop: false,
     onComplete: () => animation.goToAndPlay(80),
     duration: anim.dataset.duration // might be worth getting from a data attr too?
