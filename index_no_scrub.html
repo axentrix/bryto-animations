@@ -116,7 +116,9 @@ section{
 }
 
 #section-between{
-    background:#0B2834 url('images/aerial.png') 100% 0 no-repeat;
+    background:#0B2834 url("images/aerial1.png") 100% 0 no-repeat;
+    justify-content:flex-end;
+    /*url('images/aerial.png') 100% 0 no-repeat;*/
 }
 .d-flex{display:flex;}
 .align-items-center{
@@ -213,7 +215,7 @@ line-height:1;}
         
         </div>
         <div class="roads-animation0">
-            <div id="container-zero" class="container animation" data-json="data_house.json" data-duration="9"></div>
+            <div id="container-zero" class="container animation" data-json="data_house.json" data-duration="8"></div>
          
         </div>
 </section>
@@ -223,7 +225,7 @@ line-height:1;}
 <section id="section-one">
   
   <div class="roads-animation1">
-    <div id="container"  class="container animation" data-json="data_roads.json" data-duration="6"></div>
+    <div id="container"  class="container animation" data-json="data_roads.json" data-duration="8"></div>
  
 </div>
 
@@ -256,7 +258,7 @@ line-height:1;}
 </div>
 
 <div class="roads-animation3">
-  <div id="container-three" class="container animation" data-json="data_roadsdark.json" data-duration="5"></div>
+  <div id="container-three" class="container animation" data-json="data_roadsdark.json" data-duration="18"></div>
 
 </div>
 </section>
@@ -319,22 +321,30 @@ $( document ).ready(function () {
 
     gsap.registerPlugin(ScrollTrigger);
 const animation = gsap.utils.toArray(".animation");
-
+myspeed=new Array;
+myend=new Array;
+myspeed=["+=400%","+=400%", "+=400%", "+=600%" ];
+myend=["+=300%","+=690%", "bottom top", "+=400%" ]
 animation.forEach((anim, i) => {
   LottieScrollTrigger({
     target: anim,
     path: anim.dataset.json,
-    start: "top top",
-    speed:"medium",
-    end: "+=750%",
+    start: "20% 80%",
+    end:myend[i],
+    speed:myspeed[i],
+  
     pin: false,
     scrub: false,
-    //markers: true,
+  markers: true,
     id: 'multiple' + i,
-    toggleActions: "restart pause restart pause",
-    loop: false,
-    onComplete: () => animation.goToAndPlay(80),
-    duration: anim.dataset.duration // might be worth getting from a data attr too?
+    toggleActions: "restart pause reverse play",
+    loop: true,
+   autoplay:true,
+   duration: anim.dataset.duration,
+    
+    
+    
+   
   });
 });
 
@@ -345,11 +355,12 @@ playOnce.forEach((anim, i) => {
     target: anim,
     path: anim.dataset.json,
     start: "top bottom",
+    
     pin: false,
     scrub: false,
-    markers: true,
+   
     once: false,
-    loop: false,
+    loop: true,
     id: 'once' + i,
     duration: 2 // might be worth getting from a data attr too?
   });
@@ -365,6 +376,7 @@ function LottieScrollTrigger(vars) {
       trigger: target,
       pin: true,
       start: "top top",
+    
       end: speeds[vars.speed] || "+=1000",
       scrub: 1
     },
@@ -373,7 +385,8 @@ function LottieScrollTrigger(vars) {
       container: target,
       renderer: vars.renderer || "svg",
       loop: vars.loop || false,
-      autoplay: false,
+      autoplay: true,
+      
       path: vars.path,
       rendererSettings: vars.rendererSettings || {
         preserveAspectRatio: "xMidYMid slice"
@@ -384,14 +397,40 @@ function LottieScrollTrigger(vars) {
     st[p] = vars[p];
   }
   animation.addEventListener("DOMLoaded", function () {
+   
+
     let createTween = function () {
+      let direction=1;
       animation.frameTween = gsap.to(playhead, {
         frame: animation.totalFrames - 1,
         ease: "none",
         duration: duration,
-        onUpdate: () => animation.goToAndStop(playhead.frame, true),
-        scrollTrigger: st
+    
+      onComplete:()=>{
+       
+        setTimeout(function() {
+       
+          animation.play();
+        }, 2000);
+    
+      
+        
+      },
+        onUpdate: () => {
+          
+          animation.goToAndStop(playhead.frame, true);
+   
+        },
+        scrollTrigger: st,
+      
+
       });
+      
+      
+      
+   
+
+
       return () => animation.destroy && animation.destroy();
     };
     ctx && ctx.add ? ctx.add(createTween) : createTween();
