@@ -27,7 +27,7 @@ body,div,p, h1,h2,h3,h4,h5{
 }
 
 #section-one .column{
-    min-height:400vh;
+    min-height:300vh;
  
 
 }
@@ -37,11 +37,11 @@ body,div,p, h1,h2,h3,h4,h5{
 }
 
 #section-two .column{
-    min-height:400vh;
+    min-height:300vh;
 }
 
 .progress{
-    min-height:25vmin;
+  
 }
 
 #section-between .column{
@@ -215,7 +215,7 @@ line-height:1;}
         
         </div>
         <div class="roads-animation0">
-            <div id="container-zero" class="container animation" data-json="data_house.json" data-duration="8"></div>
+            <div id="container-zero" class="container animation" data-json="data_house.json" data-duration="12"></div>
          
         </div>
 </section>
@@ -288,7 +288,7 @@ line-height:1;}
 
     </section>  
     
-
+<section></section>
 
 
   
@@ -324,7 +324,7 @@ const animation = gsap.utils.toArray(".animation");
 myspeed=new Array;
 myend=new Array;
 myspeed=["+=400%","+=400%", "+=400%", "+=600%" ];
-myend=["+=300%","+=690%", "bottom top", "+=400%" ]
+myend=["+=100%","+=390%", "bottom top", "+=400%" ]
 animation.forEach((anim, i) => {
   LottieScrollTrigger({
     target: anim,
@@ -335,9 +335,9 @@ animation.forEach((anim, i) => {
   
     pin: false,
     scrub: false,
-  //markers: true,
+ markers: true,
     id: 'multiple' + i,
-    toggleActions: "restart pause reverse play",
+    toggleActions: "restart play reverse play",
     loop: true,
    autoplay:true,
    duration: anim.dataset.duration,
