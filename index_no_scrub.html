@@ -70,6 +70,7 @@ ul li{
 .activediv{
   background:#C4DEF3;
   width:32px;
+  min-width:32px;
   height:32px;
   border-radius:50%;
   margin-right:12px;
@@ -126,7 +127,7 @@ section{
 }
 
 .roads-animation0, .roads-animation2, .roads-animation1{
-    position:sticky;
+  position:sticky;
     display:flex;
   top:60px;
     
@@ -187,7 +188,7 @@ line-height:1;}
 
   </section>
 
-<section id="section-zero">
+<section id="section-zero" class="has-animation">
    
 
 
@@ -222,10 +223,10 @@ line-height:1;}
  
 
 
-<section id="section-one">
+<section id="section-one" class="has-animation">
   
   <div class="roads-animation1">
-    <div id="container"  class="container animation" data-json="data_roads.json" data-duration="8"></div>
+    <div id="container"  class="container animation" data-json="data_roads_new.json" data-duration="8"></div>
  
 </div>
 
@@ -247,7 +248,7 @@ line-height:1;}
 </section>
 
   
-<section id="section-between">
+<section id="section-between" class="has-animation">
 
 
 <div class="column">
@@ -263,10 +264,10 @@ line-height:1;}
 </div>
 </section>
 
-<section id="section-two">
+<section id="section-two" class="has-animation">
           
     <div class="roads-animation2">
-        <div id="container-two" class="container animation" data-json="data_roads2.json" data-duration="6"></div>
+        <div id="container-two" class="container animation" data-json="data_roads2_new.json" data-duration="6"></div>
      
     </div>
     
@@ -314,151 +315,134 @@ line-height:1;}
 
 
 
-    <script>
-$( document ).ready(function () {
-
-
-
-    gsap.registerPlugin(ScrollTrigger);
-const animation = gsap.utils.toArray(".animation");
-myspeed=new Array;
-myend=new Array;
-myspeed=["+=400%","+=400%", "+=400%", "+=600%" ];
-myend=["+=100%","+=390%", "bottom top", "+=400%" ]
-animation.forEach((anim, i) => {
-  LottieScrollTrigger({
-    target: anim,
-    path: anim.dataset.json,
-    start: "20% 80%",
-    end:myend[i],
-    speed:myspeed[i],
+<script>
+  $( document ).ready(function () {
   
-    pin: false,
-    scrub: false,
- markers: false,
-    id: 'bryto_anim' + i,
-    toggleActions: "restart play reverse play",
-    loop: true,
-   autoplay:true,
-   duration: anim.dataset.duration,
+  
+  
+      gsap.registerPlugin(ScrollTrigger);
+  const animation = gsap.utils.toArray(".animation");
+  myspeed=new Array;
+  myend=new Array;
+  myspeed=["+=400%","+=400%", "+=400%", "+=600%" ];
+  myend=["+=100%","+=390%", "bottom top", "+=400%" ]
+  animation.forEach((anim, i) => {
+    LottieScrollTrigger({
+      target: anim,
+      path: anim.dataset.json,
+      start: "20% 80%",
+      end:myend[i],
+      speed:myspeed[i],
     
-    
-    
+      pin: false,
+      scrub: 2,
+   markers: false,
+      id: 'bryto_anim' + i,
+     toggleActions: "play play reverse play",
+      loop: true,
+     autoplay:true,
+     yoyo:true,
+     repeat:-1,
+     duration: anim.dataset.duration,
    
-  });
-});
-
-const playOnce = gsap.utils.toArray(".animation--once");
-
-playOnce.forEach((anim, i) => {
-  LottieScrollTrigger({
-    target: anim,
-    path: anim.dataset.json,
-    start: "top bottom",
-    
-    pin: false,
-    scrub: false,
-   
-    once: false,
-    loop: true,
-    id: 'once' + i,
-    duration: 2 // might be worth getting from a data attr too?
-  });
-});
-
-function LottieScrollTrigger(vars) {
-
-  let playhead = { frame: 0 },
-    target = gsap.utils.toArray(vars.target)[0],
-    speeds = { slow: "+=7200", medium: "+=1000", fast: "+=500" },
-    duration = vars.duration || 0.5,
-    st = {
-      trigger: target,
-      pin: true,
-      start: "top top",
-    
-      end: speeds[vars.speed] || "+=1000",
-      scrub: 1
-    },
-    ctx = gsap.context && gsap.context(),
-    animation = lottie.loadAnimation({
-      container: target,
-      renderer: vars.renderer || "svg",
-      loop: vars.loop || false,
-      autoplay: true,
       
-      path: vars.path,
-      rendererSettings: vars.rendererSettings || {
-        preserveAspectRatio: "xMidYMid slice"
-      }
+      
+     
     });
-  for (let p in vars) {
-    // let users override the ScrollTrigger defaults
-    st[p] = vars[p];
-  }
-  animation.addEventListener("DOMLoaded", function () {
-   
-
-    let createTween = function () {
-      let direction=1;
-      animation.frameTween = gsap.to(playhead, {
-        frame: animation.totalFrames - 1,
-        ease: "none",
-        duration: duration,
-    
-      onComplete:()=>{
-       
-        setTimeout(function() {
-       
-          animation.play();
-        }, 2000);
-    
-      
-        
-      },
-        onUpdate: () => {
-          
-          animation.goToAndStop(playhead.frame, true);
-   
-        },
-        scrollTrigger: st,
-      
-
-      });
-      
-      
-      
-   
-
-
-      return () => animation.destroy && animation.destroy();
-    };
-    ctx && ctx.add ? ctx.add(createTween) : createTween();
-    // in case there are any other ScrollTriggers on the page and the loading of this Lottie asset caused layout changes
-    ScrollTrigger.sort();
-    ScrollTrigger.refresh();
   });
-  return animation;
-}
-
-
-
-
-});
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-        </script>
+  const playOnce = gsap.utils.toArray(".animation--once");
+  
+  playOnce.forEach((anim, i) => {
+    LottieScrollTrigger({
+      target: anim,
+      path: anim.dataset.json,
+      start: "top bottom",
+      
+      pin: false,
+      scrub: 3,
+     
+      once: false,
+      loop: true,
+      id: 'once' + i,
+      duration: 2 // might be worth getting from a data attr too?
+    });
+  });
+  
+  function LottieScrollTrigger(vars) {
+  
+    let playhead = { frame: 0 },
+      target = gsap.utils.toArray(vars.target)[0],
+      speeds = { slow: "+=7200", medium: "+=1000", fast: "+=500" },
+      duration = vars.duration || 0.5,
+      st = {
+        trigger: target,
+        pin: true,
+        start: "top top",
+      
+        end: speeds[vars.speed] || "+=1000",
+        scrub: 1
+      },
+      ctx = gsap.context && gsap.context(),
+      animation = lottie.loadAnimation({
+        container: target,
+        renderer: vars.renderer || "svg",
+        loop: vars.loop || false,
+        autoplay: true,
+        
+        path: vars.path,
+        rendererSettings: vars.rendererSettings || {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+      });
+    for (let p in vars) {
+      // let users override the ScrollTrigger defaults
+      st[p] = vars[p];
+    }
+    animation.addEventListener("DOMLoaded", function () {
+     
+  
+      let createTween = function () {
+        let direction=1;
+        animation.frameTween = gsap.to(playhead, {
+          frame: animation.totalFrames - 1,
+          ease: "none",
+          duration: duration,
+        
+     
+          onUpdate: () => {
+           
+           if(ScrollTrigger.isInViewport(animation)){
+            console.log("yes" + playhead.frame);
+          animation.progress(1);
+        }
+            animation.goToAndStop(playhead.frame, true);
+          },
+          scrollTrigger: st,
+       
+  
+        });
+        
+        
+        
+     
+  
+  
+        return () => animation.destroy && animation.destroy();
+      };
+      ctx && ctx.add ? ctx.add(createTween) : createTween();
+      // in case there are any other ScrollTriggers on the page and the loading of this Lottie asset caused layout changes
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    });
+    return animation;
+  }
+  
+  
+  
+  
+  });
+  
+          </script>
 </body>
 </html>
