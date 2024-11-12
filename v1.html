@@ -324,7 +324,7 @@ line-height:1;}
   const animation = gsap.utils.toArray(".animation");
   myspeed=new Array;
   myend=new Array;
-  myspeed=["+=400%","+=400%", "+=400%", "+=600%" ];
+  myspeed=["+=600%","+=600%", "+=600%", "+=700%" ];
   myend=["+=100%","+=390%", "bottom top", "+=400%" ]
   animation.forEach((anim, i) => {
     LottieScrollTrigger({
@@ -338,36 +338,17 @@ line-height:1;}
       scrub: 2,
    markers: false,
       id: 'bryto_anim' + i,
-     toggleActions: "play play reverse play",
+  
       loop: true,
      autoplay:true,
      yoyo:true,
      repeat:-1,
      duration: anim.dataset.duration,
-   
-      
-      
-     
+
     });
   });
   
-  const playOnce = gsap.utils.toArray(".animation--once");
-  
-  playOnce.forEach((anim, i) => {
-    LottieScrollTrigger({
-      target: anim,
-      path: anim.dataset.json,
-      start: "top bottom",
-      
-      pin: false,
-      scrub: 3,
-     
-      once: false,
-      loop: true,
-      id: 'once' + i,
-      duration: 2 // might be worth getting from a data attr too?
-    });
-  });
+ 
   
   function LottieScrollTrigger(vars) {
   
@@ -410,14 +391,7 @@ line-height:1;}
           duration: duration,
         
      
-          onUpdate: () => {
-           
-           if(ScrollTrigger.isInViewport(animation)){
-            console.log("yes" + playhead.frame);
-          animation.progress(1);
-        }
-            animation.goToAndStop(playhead.frame, true);
-          },
+         
           scrollTrigger: st,
        
   
