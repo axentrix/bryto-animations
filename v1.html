@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Bryto</title>  
     <style>
@@ -13,6 +14,7 @@
   min-height:100vh;
   position:relative;
   justify-content:center;
+  flex-wrap:wrap;
 }
 body{
     background:#DCE6ED;
@@ -157,8 +159,8 @@ video{
 }
 h1{
   color:#1F2439;
-  
-  font-size:50px;
+  margin:0;
+  font-size:3rem;
 font-weight:700;
 line-height:1;}
 .gradient-text{
@@ -167,14 +169,300 @@ line-height:1;}
   -webkit-text-fill-color: transparent;
   
 
+
+
+}
+.banner li{
+  font-size:12px;
+  color:rgba(255,255,255,0.3);
+  margin:0;
+}
+h1.title{
+  min-height:200px;
+}
+  /*anim*/
+
+  
+
+
+
+
+.title h1 span, .title span {
+  width: 100%;
+  float: left;
+  color: #ffffff;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+  transform: translateY(-50px);
+  opacity: 0;
+  animation-name: titleAnimation;
+  animation-timing-function: ease;
+  animation-duration: 6s;
+  animation-iteration-count:infinite;
+}
+
+.title span {
+ 
+  -webkit-animation-fill-mode: forwards;
+  position:absolute;
+}
+
+.title span:last-child {
+
+  animation-delay: 3s;
+}
+.banner{
+
+  width:100%;
+  background:#121E47 url("images/bgmms.png") 100% 0 no-repeat;
+  min-height:800px;
+  max-height:90vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  justify-content:center;
+border-radius:32px;
+}
+
+.titlecontainer{
+  width: 80%;
+  max-width: 400px;
+  
+  min-height: 300px;
+  position: relative;
+  padding:20px;
+  display:flex;
+gap:24px;
+  flex-wrap:wrap;
+
+  flex-direction:column;
+
+}
+.cardcontainer{
+  width:50%;
+  max-height:480px;
+  flex:1 0 auto;
+height:100%;
+  justify-content:center;
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+.card {
+  width: 85vmin;
+  max-width:500px;
+  max-height:300px;
+  position:relative;
+  height: 65vmin;
+
+  background-size: cover;
+
+  /* Make sure this element can exist in 3d space */
+ -webkit-background-clip: padding-box;
+-moz-background-clip:    padding; 
+background-clip:         padding-box;
+  border-radius:24px;
+
+
+   opacity:0.4;
+   position:absolute;
+   background-size:cover;
+}
+
+.card1{background:url("images/1web.jpg") 0 0 no-repeat;
+transform:
+   perspective(800px)
+  rotateX(50deg)
+  rotateY(-5deg)
+  rotateZ(-30deg)
+   translateZ(60px)
+    translateX(-20px)
+   translateY(40px);
+    
+}
+.card2{background:url("images/2web.jpg") 0 0 no-repeat;
+transform:
+  perspective(800px)
+  rotateX(50deg)
+  rotateY(-5deg)
+  rotateZ(-30deg)
+   translateZ(60px)
+    translateX(-40px)
+   translateY(80px);
+}
+.card3{opacity:1;
+  background:url("images/3web.jpg") 0 0 no-repeat;
+   transform-style: preserve-3d;
+  
+transform:
+  perspective(800px)
+  rotateX(50deg)
+  rotateY(-5deg)
+  rotateZ(-30deg)
+  translateZ(90px)
+     translateY(10px);
+  /* transform: rotateX(60deg) rotateY(-15deg) translateZ(-30px) translateY(20px);*/
+}
+
+.card4{opacity:1;
+ 
+   transform-style: preserve-3d;
+  z-index:9992;
+transform:
+ 
+ 
+  translateZ(-60px)
+     translateY(-90px);
+  /* transform: rotateX(60deg) rotateY(-15deg) translateZ(-30px) translateY(20px);*/
+}
+.card5{opacity:1;
+ 
+   transform-style: preserve-3d;
+  z-index:9993;
+transform:
+ 
+ 
+  translateZ(-100px)
+    translateX(20px)
+     translateY(-170px);
+     
+  /* transform: rotateX(60deg) rotateY(-15deg) translateZ(-30px) translateY(20px);*/
+}
+@keyframes titleAnimation {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 5%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 5%);
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 5%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 5%);
+  }
+   62% {
+    transform: translateY(50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+  }
+}
+
+.banner h4{
+  text-transform:uppercase;
+    background: -webkit-linear-gradient(#F01946, #FF9D2D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size:24px;
+  margin:0;
+}
+.banner .circle{
+  position:fixed;
+ right:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  top:50px;
+  width:132px;
+  height:132px;
+  z-index:9999991;
+}
+ .banner .circle a{
+   display:flex;
+  align-items:center;
+  justify-content:center;
+    width:132px;
+  height:132px;
+  background:rgba(0,0,0,0.14);
+  border-radius:999px;
+ }
+.banner .banner-wrap{
+    display: flex;
+    gap: 24px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 90%;
+    height: 100vh;
+    flex-wrap:wrap;
+}
+
+.gm-icon, .gm-shape{
+  position:absolute;
+  align-self:center;
 }
       </style>
+      <style>
+  html {
+    scroll-behavior: smooth;
+  }
 
-</head>
-<body class="loading">
+
+  @media (orientation:portrait){
+.banner .circle{
+  bottom:20px;
+  left:20px;
+  right:unset;
+  top:unset;
+}
+
+.banner{
+  background-position:100% 100%;
+ background-size:-100% -100%;
+}
+.banner h4{
+  font-size:20px;
+
+}
+.banner-wrap, .titlecontainer{
+  gap:12px;
+}
+  }
+  </style>
+  </head>
+<body>
+
+  <section class="banner" id="banner">
+    <div class="banner-wrap">
+<div class="titlecontainer">
+  <div class="circle"><a href="#banner"><div class="gm-shape"><img src="images/circle.svg"></div><div class="gm-icon"><img src="images/googlemaps.svg"></div></a></div>
+  <h4>SPECIAL LIMITED-TIME OFFER</h4>
+  <h1 class="title">
+    <span>Try our Map Modification Service for Free</span>
+  <span>Try our  Package Community Standard for just $750*</span>
+  </h1>
+  <ul class="text-white"><li>*New customers only</li><li>**max. 1 community per customer</li>
+  
+  
+  </ul>
+
+</div>
+<div class="cardcontainer">
+  <div class="card card5"><img src="images/layer-numbers.svg"></div>
+<div class="card card4"><img src="images/layer-roads.png"></div>
+<div class="card card1"></div>
+<div class="card card2"></div>
+<div class="card card3"></div>
+
+</div></div>
+  </section>
   <section class="top-section">
 <div class="column">
-    <h1>#1 On demand <span class="gradient-text">Google Street  View</span> Publishing </h1></div>
+    <h1><span>#1 On demand </span><span class="gradient-text">Google Street  View</span> <span>Publishing</span> </h1></div>
     <div class="container video-container">
     
       <video autoplay loop id="video-background" muted plays-inline>
@@ -321,6 +609,103 @@ line-height:1;}
   
   
       gsap.registerPlugin(ScrollTrigger);
+
+const picture = document.querySelector(".card");
+
+ gsap.to(".gm-shape", {rotation: 1440, duration: 360});
+    gsap.to(".gm-shape", {
+        scrollTrigger: {
+            trigger: ".banner",
+            scrub: 1,
+            start: 'top center',
+            end: '+=5000',
+        },
+        rotation: 1440,
+        duration: 3,
+        ease: "none",
+    });
+const scrollTimeline = gsap.timeline({
+  scrollTrigger: {
+    // make ScrollTrigger part of the timeline
+    trigger: ".banner",
+    pin: false, // Pin everthing
+    scrub: true, // Use true to remove the lag that makes things feel janky
+    /*markers: true,*/
+    // animation: scrollAnimation, // Add the whole timeline to the controll of the ScrollTrigger
+    // animation: scrollTimeline, // No need if you make ScrollTrigger part of the timeline
+    start: "top",
+    end: `top+=${window.innerHeight} top` // add window height as a scroll distance
+  }
+});
+scrollTimeline
+  
+      .to(
+    ".card5",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -260, // move elemnt .from() the current window height
+      opacity:0.4,
+      ease: "power.out"
+    }) 
+     .to(
+    ".card4",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -140, // move elemnt .from() the current window height
+      opacity:0.4,
+      ease: "power.in"
+    }) 
+ 
+
+  .to(".card3", {
+    y: -120,
+   rotateX: 20,
+         rotateY: 10,
+          rotateZ: -30,
+    ease: "power.in",
+    duration: 1 // Make both tween the same duration
+  })
+  .to(
+    ".card1",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -100, // move elemnt .from() the current window height
+       rotateX: 20,
+         rotateY: 10,
+          rotateZ: -30,
+      ease: "power.in"
+    })
+    
+     .to(
+    ".card2",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -80, // move elemnt .from() the current window height
+       rotateX: 20,
+         rotateY: 10,
+          rotateZ: -30,
+      ease: "power.in"
+    })
+    .to(".banner h1, .banner h4", {
+        y: -40,
+        opacity: 0.4,
+      }, "-=5");
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
   const animation = gsap.utils.toArray(".animation");
   myspeed=new Array;
   myend=new Array;
